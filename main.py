@@ -24,6 +24,18 @@ class Block:
     return block_hash.hexdigest()
 
 
+class Blockchain:
+  genesis_block = Block(0, 0, 0)
+  def __init__(self):
+    self.transaction_list = [self.genesis_block]
+
+  def add_block(self, transactions):
+    prev_hash = self.transaction_list[-1].hash
+    new_block = Block(transactions, prev_hash)
+    self.transaction_list.append(new_block)
+
+
+
 transaction1 = {
   'amount': '30',
   'sender': 'Alice',
